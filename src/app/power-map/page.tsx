@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import * as d3 from "d3";
 import {
@@ -1347,7 +1348,16 @@ const visualizations = [
 ];
 
 export default function PowerMap() {
-  const [activeViz, setActiveViz] = useState(visualizations[0]); // Match Finder as default
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  // Get view from URL, default to "finder"
+  const viewParam = searchParams.get("view") || "finder";
+  const activeViz = visualizations.find(v => v.id === viewParam) || visualizations[0];
+
+  const setActiveViz = (viz: typeof visualizations[0]) => {
+    router.push(`/power-map?view=${viz.id}`, { scroll: false });
+  };
 
   const ActiveComponent = activeViz.component;
 
