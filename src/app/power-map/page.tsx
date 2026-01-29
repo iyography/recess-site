@@ -1361,19 +1361,14 @@ export default function PowerMap() {
           <Link href="/" className="font-script text-3xl">
             Recess
           </Link>
-          <div className="flex items-center gap-6">
-            <Link href="/family" className="font-sans text-sm text-[#FAF6E3]/70 hover:text-[#FAF6E3] transition-colors">
-              The Family
-            </Link>
-            <a
-              href="https://www.skool.com/recess/about"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-[#D4A853] text-[#0A0A0A] px-6 py-2 rounded-full font-sans font-semibold hover:bg-[#c49943] transition-colors"
-            >
-              Join Recess
-            </a>
-          </div>
+          <a
+            href="https://www.skool.com/recess/about"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-[#D4A853] text-[#0A0A0A] px-6 py-2 rounded-full font-sans font-semibold hover:bg-[#c49943] transition-colors"
+          >
+            Join Recess
+          </a>
         </div>
       </header>
 
