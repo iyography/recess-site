@@ -1,0 +1,23 @@
+# Ignore large video files
+*.mp4
+*.mov
+*.avi
+public/videos/
+public/black/
+public/bakery.mp4
+public/picnic.mp4
+videos/
+rvids/
+
+# Ignore large image files
+public/favico.png
+public/og-image.png
+public/favicon.png
+
+# Environment files
+.env*.local
+
+# Other large files
+node_modules
+.next
+.git
