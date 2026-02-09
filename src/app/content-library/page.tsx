@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo, useEffect } from 'react';
-import { createClient } from '@supabase/supabase-js';
+import { socialPosts, communityPosts, skoolPosts } from './data';
 
 /* ──────────────────────────────────────────────
    TYPES
@@ -19,11 +19,8 @@ interface Post {
 type TabKey = 'social' | 'community' | 'skool';
 type VersionKey = 'short' | 'medium' | 'long';
 
-// Initialize Supabase client
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+// Combine all posts from static data
+const allPosts = [...socialPosts, ...communityPosts, ...skoolPosts];
 
 /* ──────────────────────────────────────────────
    CONTENT LIBRARY COMPONENT
@@ -35,37 +32,19 @@ export default function ContentLibrary() {
   const [activeVersion, setActiveVersion] = useState<VersionKey>('short');
 
   useEffect(() => {
-    async function fetchPosts() {
-      try {
-        const { data, error } = await supabase
-          .from('content_posts')
-          .select('*')
-          .order('id');
-        
-        if (error) {
-          console.error('Error fetching posts:', error);
-          return;
-        }
-        
-        setPosts(data || []);
-      } catch (error) {
-        console.error('Error:', error);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchPosts();
+    // Use static data instead of Supabase
+    setPosts(allPosts);
+    setLoading(false);
   }, []);
 
   // Filter posts by tab
-  const socialPosts = posts.filter(post => post.tab === 'social');
-  const communityPosts = posts.filter(post => post.tab === 'community');  
-  const skoolPosts = posts.filter(post => post.tab === 'skool');
+  const socialPostsFiltered = posts.filter(post => post.tab === 'social');
+  const communityPostsFiltered = posts.filter(post => post.tab === 'community');  
+  const skoolPostsFiltered = posts.filter(post => post.tab === 'skool');
 
   // Get posts for current tab
-  const currentPosts = activeTab === 'social' ? socialPosts : 
-                      activeTab === 'community' ? communityPosts : skoolPosts;
+  const currentPosts = activeTab === 'social' ? socialPostsFiltered : 
+                      activeTab === 'community' ? communityPostsFiltered : skoolPostsFiltered;
 
   if (loading) {
     return (
@@ -95,7 +74,7 @@ export default function ContentLibrary() {
                 : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
             }`}
           >
-            Social Media ({socialPosts.length})
+            Social Media ({socialPostsFiltered.length})
           </button>
           <button
             onClick={() => setActiveTab('community')}
@@ -105,7 +84,7 @@ export default function ContentLibrary() {
                 : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
             }`}
           >
-            Community ({communityPosts.length})
+            Community ({communityPostsFiltered.length})
           </button>
           <button
             onClick={() => setActiveTab('skool')}
@@ -115,7 +94,7 @@ export default function ContentLibrary() {
                 : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
             }`}
           >
-            Skool Posts ({skoolPosts.length})
+            Skool Posts ({skoolPostsFiltered.length})
           </button>
         </div>
 
