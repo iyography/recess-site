@@ -40,11 +40,12 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Large video files
-videos/
-public/videos/*.mp4
-
-# Large video files
-rvids/
+# Large video files  
+*.mp4
+*.mov
+*.avi
 public/videos/
+public/black/
+public/bakery.mp4
+public/picnic.mp4
 .env*.local
