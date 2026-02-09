@@ -98,7 +98,7 @@ export default function WinsOrange() {
                 Take Quiz
               </Link>
               <Link
-                href="https://skool.com/focus-founders/about"
+                href="https://www.skool.com/focus-founders-free/about"
                 className="text-xs tracking-widest uppercase px-6 py-2 bg-yellow-500 text-black hover:bg-yellow-400 transition-all duration-300 rounded-sm"
               >
                 Join Free
@@ -190,7 +190,7 @@ export default function WinsOrange() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
               <Link 
-                href="https://skool.com/focus-founders/about"
+                href="https://www.skool.com/focus-founders-free/about"
                 className="inline-block font-sans font-semibold bg-yellow-500 hover:bg-yellow-400 text-black px-12 py-4 rounded-full transition-colors text-lg"
               >
                 Join Focus Founders FREE

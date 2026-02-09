@@ -809,7 +809,7 @@ export default function HiddenWins() {
               <a href="/" className="transition-colors duration-200 font-space-grotesk" style={{ color: BLUE }}>
                 Home
               </a>
-              <a href="https://skool.com/focus-founders/about" target="_blank" rel="noopener noreferrer" className="transition-colors duration-200 font-space-grotesk" style={{ color: BLUE }}>
+              <a href="https://www.skool.com/focus-founders-free/about" target="_blank" rel="noopener noreferrer" className="transition-colors duration-200 font-space-grotesk" style={{ color: BLUE }}>
                 Community
               </a>
             </div>

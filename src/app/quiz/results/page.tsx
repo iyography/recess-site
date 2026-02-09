@@ -4,6 +4,25 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 
+interface ResultProfile {
+  archetype: string;
+  archetypeEmoji: string;
+  archetypeDescription: string;
+  archetypeDetail: string;
+  challenge: string;
+  challengeEmoji: string;
+  challengeDescription: string;
+  pathForward: string[];
+  focusOn: {
+    title: string;
+    items: string[];
+  };
+  ignore: {
+    title: string;
+    items: string[];
+  };
+}
+
 interface ServiceTier {
   name: string;
   price: string;
@@ -13,48 +32,117 @@ interface ServiceTier {
   color: string;
 }
 
-const serviceTiers: Record<string, ServiceTier> = {
+const resultProfiles: Record<string, ResultProfile> = {
   low: {
-    name: "ADHD Accountability Starter",
-    price: "$97-197/month",
-    description: "Perfect for neurodivergent entrepreneurs just starting their journey who need daily support and community.",
-    services: [
-      "Daily check-ins and accountability",
-      "ADHD-friendly community support", 
-      "Foundational business frameworks",
-      "Energy management basics",
-      "Dopamine-sized wins tracking"
+    archetype: "The Foundation Seeker",
+    archetypeEmoji: "🌱",
+    archetypeDescription: "Visionary, High Energy, Needs Structure",
+    archetypeDetail: "You have big dreams and the drive to make them happen, but you need solid systems to channel your ADHD superpowers effectively.",
+    challenge: "Structure & Systems Gap",
+    challengeEmoji: "⚡",
+    challengeDescription: "Brilliant ideas, scattered execution. You know what to do but struggle with consistent systems and daily accountability.",
+    pathForward: [
+      "Start with ONE simple daily routine that works with your ADHD brain",
+      "Focus on energy-based scheduling instead of time-based",
+      "Build dopamine reward systems into every business task"
     ],
-    cta: "Start Your ADHD Business Journey",
-    color: "from-green-600 to-emerald-600"
+    focusOn: {
+      title: "What to focus on:",
+      items: ["Daily accountability systems", "ADHD-friendly productivity methods", "Community support and connection"]
+    },
+    ignore: {
+      title: "What to ignore:",
+      items: ["Complex business strategies", "Traditional time management", "Perfectionist thinking"]
+    }
   },
   mid: {
-    name: "ADHD Business Systems Intensive", 
-    price: "$497-997/month",
-    description: "For growing entrepreneurs ready to build sustainable systems without burning out their ADHD brains.",
-    services: [
-      "Bi-weekly 1:1 strategy calls",
-      "Custom ADHD-friendly systems",
-      "Client retention frameworks", 
-      "Energy-based scheduling",
-      "Crisis support channels"
+    archetype: "The System Builder",
+    archetypeEmoji: "🔧",
+    archetypeDescription: "Growing Fast, Learning Quickly, Scaling Challenges",
+    archetypeDetail: "You've got momentum but need custom systems that work with your neurodivergent brain to scale sustainably.",
+    challenge: "Scaling Without Burnout",
+    challengeEmoji: "🚀",
+    challengeDescription: "You're growing but hitting capacity limits. Traditional business advice doesn't work for your ADHD brain.",
+    pathForward: [
+      "Create ADHD-friendly client delivery systems",
+      "Build energy-based team workflows", 
+      "Develop sustainable pricing that accounts for neurodivergent work patterns"
     ],
-    cta: "Scale Your ADHD Business",
-    color: "from-orange-600 to-amber-600"
+    focusOn: {
+      title: "What to focus on:",
+      items: ["Custom ADHD business systems", "Client retention frameworks", "Energy management protocols"]
+    },
+    ignore: {
+      title: "What to ignore:",
+      items: ["Generic business courses", "Hustle culture mentality", "One-size-fits-all solutions"]
+    }
   },
   high: {
-    name: "Scale Without Burnout Mastermind",
-    price: "$1997-3997/month", 
-    description: "Elite support for established entrepreneurs who refuse to sacrifice their neurodivergent gifts for growth.",
-    services: [
-      "Weekly 1:1 strategic intensives",
-      "24/7 crisis management support",
-      "Advanced team building for ADHD leaders",
-      "Burnout prevention protocols",
-      "Peer mastermind access"
+    archetype: "The Visionary Leader",
+    archetypeEmoji: "👑",
+    archetypeDescription: "Established, Innovative, Ready for Mastery",
+    archetypeDetail: "You're successful but ready to scale to the next level while honoring your neurodivergent leadership style.",
+    challenge: "Leadership & Legacy",
+    challengeEmoji: "🎯",
+    challengeDescription: "You want to build something bigger than yourself while staying true to your ADHD strengths and avoiding traditional burnout.",
+    pathForward: [
+      "Develop neurodivergent-friendly leadership systems",
+      "Create scalable team structures that complement ADHD",
+      "Build legacy systems that work without constant oversight"
     ],
-    cta: "Join the Elite Mastermind",
-    color: "from-purple-600 to-violet-600"
+    focusOn: {
+      title: "What to focus on:",
+      items: ["Advanced ADHD leadership training", "Scalable team systems", "Legacy business building"]
+    },
+    ignore: {
+      title: "What to ignore:",
+      items: ["Traditional leadership advice", "Micromanagement strategies", "Cookie-cutter scaling methods"]
+    }
+  }
+};
+
+const serviceTiers: Record<string, ServiceTier> = {
+  low: {
+    name: "Foundation Builder Program",
+    price: "$197/month",
+    description: "Build the ADHD-friendly foundation your business needs to thrive.",
+    services: [
+      "Daily accountability check-ins",
+      "ADHD business framework library", 
+      "Energy-based scheduling system",
+      "Dopamine reward tracking",
+      "Community support access"
+    ],
+    cta: "Join Foundation Builder →",
+    color: "from-green-500 to-emerald-600"
+  },
+  mid: {
+    name: "Scale Smart Intensive", 
+    price: "$697/month",
+    description: "Scale your business with custom ADHD-friendly systems that prevent burnout.",
+    services: [
+      "Bi-weekly 1:1 strategy sessions",
+      "Custom business system design",
+      "Client delivery optimization", 
+      "Team workflow development",
+      "Crisis support protocols"
+    ],
+    cta: "Join Scale Smart →",
+    color: "from-orange-500 to-red-500"
+  },
+  high: {
+    name: "Visionary Leaders Mastermind",
+    price: "$1,997/month", 
+    description: "Elite mastermind for ADHD entrepreneurs building 7-figure+ businesses.",
+    services: [
+      "Weekly strategic intensives",
+      "Neurodivergent leadership development",
+      "Advanced team scaling systems",
+      "Legacy business planning",
+      "Direct founder access"
+    ],
+    cta: "Join the Mastermind →",
+    color: "from-purple-500 to-violet-600"
   }
 };
 
@@ -90,97 +178,135 @@ export default function QuizResults() {
   };
 
   const tier = calculateTier();
-  const result = serviceTiers[tier];
+  const profile = resultProfiles[tier];
+  const service = serviceTiers[tier];
 
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gradient-to-br from-purple-900 via-orange-900 to-red-900 pt-24">
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 pt-24">
         <div className="max-w-4xl mx-auto px-6 py-12">
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 text-white">
+          <div className="bg-white rounded-2xl p-8 text-gray-900 shadow-2xl">
+            
+            {/* Header */}
             <div className="text-center mb-8">
-              <h1 className="text-4xl font-bold mb-4">Your ADHD Business Assessment Results</h1>
-              <p className="text-xl text-yellow-400">Score: {totalScore}/360 points</p>
-              <p className="text-lg text-white/80 mt-2">
-                Based on your responses to 90 ADHD-specific business questions
-              </p>
-            </div>
-            
-            <div className={`bg-gradient-to-r ${result.color} rounded-xl p-8 mb-8`}>
-              <h2 className="text-3xl font-bold mb-4">{result.name}</h2>
-              <p className="text-2xl font-semibold mb-4">{result.price}</p>
-              <p className="text-lg mb-6">{result.description}</p>
-              
-              <div className="mb-6">
-                <h3 className="text-xl font-semibold mb-3">What's Included:</h3>
-                <ul className="space-y-2">
-                  {result.services.map((service, index) => (
-                    <li key={index} className="flex items-center">
-                      <span className="text-yellow-300 mr-2">✓</span>
-                      {service}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              
-              <button className="bg-white text-gray-900 font-bold py-4 px-8 rounded-full hover:bg-yellow-100 transition-colors">
-                {result.cta}
-              </button>
-            </div>
-
-            <div className="bg-white/10 rounded-xl p-6 mb-8">
-              <h3 className="text-xl font-semibold mb-4">Your ADHD Business Profile</h3>
-              <div className="grid md:grid-cols-3 gap-4 text-sm">
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-green-400">{Math.round((answers.filter(a => a === 1).length / 90) * 100)}%</div>
-                  <div className="text-white/80">Foundation Building</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-orange-400">{Math.round((answers.filter(a => a === 2 || a === 3).length / 90) * 100)}%</div>
-                  <div className="text-white/80">Systems Development</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-purple-400">{Math.round((answers.filter(a => a === 4).length / 90) * 100)}%</div>
-                  <div className="text-white/80">Mastery Level</div>
-                </div>
+              <h1 className="text-4xl font-bold mb-2">🤖 Your Strike Zone Results</h1>
+              <div className="text-2xl font-bold text-gray-700">
+                You're {profile.archetype} with {profile.challenge}
               </div>
             </div>
 
-            <div className="bg-white/10 rounded-xl p-6 mb-8">
-              <h3 className="text-xl font-semibold mb-4">Why This Assessment Matters</h3>
-              <p className="text-white/90 mb-4">
-                This comprehensive 90-question assessment was designed specifically for ADHD entrepreneurs based on real business coaching data. It evaluates your unique challenges with:
-              </p>
-              <div className="grid md:grid-cols-2 gap-4 text-sm">
-                <ul className="space-y-1">
-                  <li>• Executive dysfunction management</li>
-                  <li>• Hyperfocus and time blindness</li>
-                  <li>• Rejection sensitivity in business</li>
-                  <li>• Energy-based work patterns</li>
-                  <li>• Interest-driven motivation</li>
-                </ul>
-                <ul className="space-y-1">
-                  <li>• Client relationship management</li>
-                  <li>• Business systems development</li>
-                  <li>• Financial planning and pricing</li>
-                  <li>• Team leadership challenges</li>
-                  <li>• Sustainable growth strategies</li>
-                </ul>
+            {/* Your Archetype Section */}
+            <div className="bg-gray-50 rounded-xl p-6 mb-6">
+              <div className="flex items-center mb-4">
+                <span className="text-3xl mr-3">{profile.archetypeEmoji}</span>
+                <h2 className="text-2xl font-bold">Your Archetype</h2>
+              </div>
+              <h3 className="text-xl font-semibold text-blue-600 mb-2">{profile.archetype}</h3>
+              <p className="text-gray-600 mb-3">{profile.archetypeDescription}</p>
+              <p className="text-gray-800">{profile.archetypeDetail}</p>
+            </div>
+
+            {/* Your Challenge Section */}
+            <div className="bg-gray-50 rounded-xl p-6 mb-6">
+              <div className="flex items-center mb-4">
+                <span className="text-3xl mr-3">{profile.challengeEmoji}</span>
+                <h2 className="text-2xl font-bold">Your Challenge</h2>
+              </div>
+              <h3 className="text-xl font-semibold text-red-600 mb-2">{profile.challenge}</h3>
+              <p className="text-gray-600 mb-3">{profile.challengeDescription}</p>
+            </div>
+
+            {/* Your Path Forward */}
+            <div className="bg-blue-50 rounded-xl p-6 mb-6">
+              <h2 className="text-2xl font-bold mb-4">Your Path Forward:</h2>
+              <ul className="space-y-2 mb-6">
+                {profile.pathForward.map((step, index) => (
+                  <li key={index} className="flex items-start">
+                    <span className="text-blue-600 font-bold mr-2">•</span>
+                    <span>{step}</span>
+                  </li>
+                ))}
+              </ul>
+              
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <h3 className="font-semibold text-green-700 mb-2">{profile.focusOn.title}</h3>
+                  <ul className="space-y-1">
+                    {profile.focusOn.items.map((item, index) => (
+                      <li key={index} className="text-sm text-gray-700">{item}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-red-700 mb-2">{profile.ignore.title}</h3>
+                  <ul className="space-y-1">
+                    {profile.ignore.items.map((item, index) => (
+                      <li key={index} className="text-sm text-gray-700">{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Options to Consider */}
+            <div className="border-t pt-8">
+              <h2 className="text-2xl font-bold mb-2">Options to Consider</h2>
+              <p className="text-gray-600 mb-6">If you're not sure, book a discovery call.</p>
+              
+              <div className="space-y-6">
+                {/* Primary Service */}
+                <div className={`bg-gradient-to-r ${service.color} rounded-xl p-6 text-white`}>
+                  <h3 className="text-2xl font-bold mb-2">{service.name}</h3>
+                  <p className="text-xl mb-4">{service.price}</p>
+                  <p className="mb-6 opacity-90">{service.description}</p>
+                  
+                  <ul className="space-y-2 mb-6">
+                    {service.services.map((item, index) => (
+                      <li key={index} className="flex items-center">
+                        <span className="text-yellow-300 mr-2">✓</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  <button className="bg-white text-gray-900 font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition-colors">
+                    {service.cta}
+                  </button>
+                </div>
+
+                {/* Discovery Call Option */}
+                <div className="bg-gray-100 rounded-xl p-6">
+                  <h3 className="text-xl font-bold mb-2">Work With Me 1-on-1 →</h3>
+                  <p className="text-gray-700 mb-4">I personally help you scale to $5K/mo + beyond</p>
+                  
+                  <ul className="space-y-1 text-sm text-gray-700 mb-4">
+                    <li>• Weekly 1-on-1 strategy sessions</li>
+                    <li>• Custom ADHD-friendly business systems</li>
+                    <li>• Done-for-you implementation</li>
+                    <li>• Direct founder access (48hr response)</li>
+                    <li>• Custom 90-day roadmap</li>
+                  </ul>
+                  
+                  <button className="bg-orange-500 text-white font-bold py-3 px-6 rounded-full hover:bg-orange-400 transition-colors">
+                    Book Discovery Call
+                  </button>
+                </div>
               </div>
             </div>
             
-            <div className="text-center">
+            <div className="text-center mt-8 pt-6 border-t">
               <button 
                 onClick={resetQuiz}
-                className="bg-white/20 hover:bg-white/30 px-6 py-3 rounded-full transition-colors mr-4"
+                className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-6 py-3 rounded-full transition-colors mr-4"
               >
-                Retake Quiz
+                Retake Assessment
               </button>
               <a
-                href="https://skool.com/focus-founders/about"
-                className="bg-yellow-500 hover:bg-yellow-400 text-black px-6 py-3 rounded-full font-semibold transition-colors"
+                href="https://www.skool.com/focus-founders-free/about"
+                className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-full font-semibold transition-colors"
               >
-                Join Focus Founders Community
+                Join Community
               </a>
             </div>
           </div>

@@ -8770,6 +8770,7 @@ Share your ADHD-friendly goals, intentions, and commitments to working with your
 
 Let's create a supportive community for sustainable ADHD entrepreneurship! 👇`
   }
+];
 
 /* ──────────────────────────────────────────────
    SKOOL POSTS (100 total)
@@ -13037,3 +13038,4 @@ Remember: Success with ADHD goals = consistent effort aligned with your neurodiv
 
 The best goals are ones that energize rather than drain you, build on your natural strengths, and accommodate the beautiful complexity of your ADHD brain.`
   }
+];

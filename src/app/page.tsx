@@ -9,6 +9,12 @@ function getPosterFromVideo(videoUrl: string): string {
   if (videoUrl.startsWith('/videos/')) {
     return '';
   }
+  // Handle Cloudinary URLs
+  if (videoUrl.includes('cloudinary.com')) {
+    return videoUrl
+      .replace("/video/upload/", "/video/upload/so_0,f_jpg,q_auto/")
+      .replace(".mp4", ".jpg");
+  }
   return videoUrl
     .replace("/video/upload/q_auto,f_auto/", "/video/upload/so_0,f_jpg,q_auto/")
     .replace(".mp4", ".jpg");
@@ -89,11 +95,11 @@ function AutoPlayVideo({ src, className }: { src: string; className: string }) {
 // ============================================
 function Design1() {
   const videos = {
-    hero: "/videos/1.mp4",
-    about: "/videos/8.mp4",
+    hero: "https://res.cloudinary.com/dzlnqcmqn/video/upload/v1770663304/1_wlywzm.mp4",
+    about: "https://res.cloudinary.com/dzlnqcmqn/video/upload/v1770663315/8_gdac6h.mp4",
     feature: "/videos/3.mp4",
     findPeople: "/videos/4.mp4",
-    whatIsnt: "/videos/15.mp4",
+    whatIsnt: "https://res.cloudinary.com/dzlnqcmqn/video/upload/v1770000552/15_uefhjt.mp4",
   };
 
   return (
@@ -115,7 +121,7 @@ function Design1() {
             Good people + focused effort + self-love = massive world impact.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
-            <a href="https://skool.com/focus-founders/about" className="inline-block font-sans font-semibold bg-yellow-500 hover:bg-yellow-400 text-black px-12 py-4 rounded-full transition-colors">
+            <a href="https://www.skool.com/focus-founders-free/about" className="inline-block font-sans font-semibold bg-yellow-500 hover:bg-yellow-400 text-black px-12 py-4 rounded-full transition-colors">
               Join Focus Founders FREE
             </a>
             <a href="/quiz" className="inline-block font-sans font-semibold bg-white/20 hover:bg-white/30 text-white border-2 border-white/30 px-12 py-4 rounded-full transition-colors">
@@ -253,7 +259,7 @@ function Design1() {
         <p className="font-sans text-xl text-white/80 mb-10 max-w-3xl mx-auto">
           Stop fighting your ADHD. Start building a business that leverages your neurodivergent superpowers.
         </p>
-        <a href="https://skool.com/focus-founders/about" className="inline-block font-sans font-semibold bg-yellow-500 hover:bg-yellow-400 text-black px-14 py-5 rounded-full transition-colors text-xl">
+        <a href="https://www.skool.com/focus-founders-free/about" className="inline-block font-sans font-semibold bg-yellow-500 hover:bg-yellow-400 text-black px-14 py-5 rounded-full transition-colors text-xl">
           Join Focus Founders FREE
         </a>
         <p className="text-white/60 text-sm mt-6">
