@@ -28,9 +28,9 @@ export default function Navbar() {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
-            className="font-script text-2xl md:text-3xl text-white hover:opacity-80 transition-all duration-300"
+            className="font-bold text-2xl md:text-3xl text-white hover:opacity-80 transition-all duration-300"
           >
-            Recess
+            Focus Founders
           </a>
 
           {/* Nav Links */}
@@ -39,7 +39,7 @@ export default function Navbar() {
               href="#why"
               className="font-sans text-sm text-white/70 hover:text-white transition-colors"
             >
-              What Is Recess?
+              About
             </a>
             <a
               href="#features"
@@ -54,26 +54,26 @@ export default function Navbar() {
               For You
             </a>
             <a
-              href="/power-map"
+              href="/quiz"
               className="font-sans text-sm text-white/70 hover:text-white transition-colors"
             >
-              Power Map
+              Quiz
             </a>
           </div>
 
           {/* CTA Buttons */}
           <div className="flex items-center gap-3">
             <a
-              href="/affiliates"
-              className="font-sans text-xs tracking-widest uppercase px-6 py-2 bg-[#9EB1C7] text-[#0A0A0A] hover:bg-[#b8c9d9] transition-all duration-300 rounded-sm"
+              href="/quiz"
+              className="font-sans text-xs tracking-widest uppercase px-6 py-2 bg-orange-500 text-black hover:bg-orange-400 transition-all duration-300 rounded-sm"
             >
-              Affiliates
+              Take Quiz
             </a>
             <a
-              href="https://www.skool.com/Recess/about"
-              className="font-sans text-xs tracking-widest uppercase px-6 py-2 bg-[#D4A853] text-[#0A0A0A] hover:bg-[#c49943] transition-all duration-300 rounded-sm"
+              href="https://skool.com/focus-founders/about"
+              className="font-sans text-xs tracking-widest uppercase px-6 py-2 bg-yellow-500 text-black hover:bg-yellow-400 transition-all duration-300 rounded-sm"
             >
-              Join Recess
+              Join Focus Founders FREE
             </a>
           </div>
         </div>

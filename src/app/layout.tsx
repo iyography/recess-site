@@ -31,30 +31,30 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Recess | For Skool Owners",
-  description: "You don't have to build alone anymore. Recess is where Skool owners rest, connect, and remember why they started. Free forever.",
+  title: "Focus Founders | Neurodivergent Entrepreneurs Community",
+  description: "Stop fighting your ADHD. Focus Founders is where neurodivergent entrepreneurs build businesses that work with their brains, not against them. Free forever.",
   icons: {
     icon: "/favicon.png",
     shortcut: "/favicon.png",
     apple: "/favicon.png",
   },
   openGraph: {
-    title: "Recess | For Skool Owners",
-    description: "You don't have to build alone anymore. Recess is where Skool owners rest, connect, and remember why they started. Free forever.",
+    title: "Focus Founders | Neurodivergent Entrepreneurs Community",
+    description: "Stop fighting your ADHD. Focus Founders is where neurodivergent entrepreneurs build businesses that work with their brains, not against them. Free forever.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Recess - For Skool Owners",
+        alt: "Focus Founders - Neurodivergent Entrepreneurs Community",
       },
     ],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Recess | For Skool Owners",
-    description: "You don't have to build alone anymore. Recess is where Skool owners rest, connect, and remember why they started. Free forever.",
+    title: "Focus Founders | Neurodivergent Entrepreneurs Community",
+    description: "Stop fighting your ADHD. Focus Founders is where neurodivergent entrepreneurs build businesses that work with their brains, not against them. Free forever.",
     images: ["/og-image.png"],
   },
 };
