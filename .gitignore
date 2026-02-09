@@ -48,4 +48,10 @@ public/videos/
 public/black/
 public/bakery.mp4
 public/picnic.mp4
+videos/
+rvids/
+# Large image files
+public/favico.png
+public/og-image.png
+public/favicon.png
 .env*.local
