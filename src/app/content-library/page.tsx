@@ -19,23 +19,17 @@ interface Post {
 type TabKey = 'social' | 'community' | 'skool';
 type VersionKey = 'short' | 'medium' | 'long';
 
-// Combine all posts from static data
-const allPosts = [...socialPosts, ...communityPosts, ...skoolPosts];
+// This will be set in the useEffect
 
 /* ──────────────────────────────────────────────
    CONTENT LIBRARY COMPONENT
    ────────────────────────────────────────────── */
 export default function ContentLibrary() {
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<TabKey>('social');
   const [activeVersion, setActiveVersion] = useState<VersionKey>('short');
-
-  useEffect(() => {
-    // Use static data instead of Supabase
-    setPosts(allPosts);
-    setLoading(false);
-  }, []);
+  
+  // Combine all posts from imported data
+  const posts = [...socialPosts, ...communityPosts, ...skoolPosts];
 
   // Filter posts by tab
   const socialPostsFiltered = posts.filter(post => post.tab === 'social');
@@ -46,13 +40,6 @@ export default function ContentLibrary() {
   const currentPosts = activeTab === 'social' ? socialPostsFiltered : 
                       activeTab === 'community' ? communityPostsFiltered : skoolPostsFiltered;
 
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center">
-        <div>Loading content library...</div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-gray-900 text-white p-6">
