@@ -23,11 +23,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
+            href="/"
             className="font-bold text-2xl md:text-3xl text-white hover:opacity-80 transition-all duration-300"
           >
             Focus Founders
@@ -36,19 +32,19 @@ export default function Navbar() {
           {/* Nav Links */}
           <div className="hidden md:flex items-center gap-8">
             <a
-              href="#why"
+              href="/#why"
               className="font-sans text-sm text-white/70 hover:text-white transition-colors"
             >
               About
             </a>
             <a
-              href="#features"
+              href="/#features"
               className="font-sans text-sm text-white/70 hover:text-white transition-colors"
             >
               Features
             </a>
             <a
-              href="#for-you"
+              href="/#for-you"
               className="font-sans text-sm text-white/70 hover:text-white transition-colors"
             >
               For You

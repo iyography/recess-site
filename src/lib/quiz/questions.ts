@@ -205,9 +205,46 @@ const serviceStartupQuestions: QuizQuestion[] = [
 ];
 
 export function getQuestionsForPath(businessType: BusinessType, growthStage: GrowthStage): QuizQuestion[] {
-  // For now, return the service startup questions for all paths
-  // In a full implementation, you'd have different question sets for each combination
-  return serviceStartupQuestions;
+  // Create stage-specific variations of questions
+  const questions = [...serviceStartupQuestions];
+  
+  // Customize first question based on growth stage
+  if (growthStage === 'growing') {
+    questions[0] = {
+      id: 'service-growing-1',
+      question: 'What\'s your biggest challenge with client acquisition at your current level?',
+      options: [
+        { text: 'I need to scale my client acquisition systems', points: 2 },
+        { text: 'I find good clients but struggle with capacity management', points: 3 },
+        { text: 'I get clients but they\'re not aligned with my growth goals', points: 3 },
+        { text: 'I need to systematize my sales process for growth', points: 4 }
+      ]
+    };
+  } else if (growthStage === 'established') {
+    questions[0] = {
+      id: 'service-established-1', 
+      question: 'What\'s your biggest challenge with managing your established business?',
+      options: [
+        { text: 'I need to delegate client work but struggle with letting go', points: 2 },
+        { text: 'I want to optimize but don\'t know how to systematize my expertise', points: 3 },
+        { text: 'I have systems but they don\'t work with my ADHD brain', points: 3 },
+        { text: 'I need help optimizing ADHD-friendly business systems', points: 4 }
+      ]
+    };
+  } else if (growthStage === 'scaling') {
+    questions[0] = {
+      id: 'service-scaling-1',
+      question: 'What\'s your biggest challenge with scaling to the next level?',
+      options: [
+        { text: 'I need advanced systems for delegation and team management', points: 3 },
+        { text: 'I want to scale but need ADHD-friendly leadership strategies', points: 4 },
+        { text: 'I have the revenue but need help building scalable operations', points: 4 },
+        { text: 'I need expert guidance for sustainable high-level growth', points: 4 }
+      ]
+    };
+  }
+  
+  return questions;
 }
 
 export { serviceStartupQuestions };

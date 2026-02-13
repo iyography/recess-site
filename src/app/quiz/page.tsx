@@ -202,9 +202,10 @@ export default function Quiz() {
   };
 
   const calculateTier = () => {
-    if (totalScore <= 180) return 'low';
-    if (totalScore <= 270) return 'mid';
-    return 'high';
+    // 20 questions × 4 points max = 80 total possible
+    if (totalScore <= 35) return 'low';     // 0-35: Foundation Seeker
+    if (totalScore <= 55) return 'mid';     // 36-55: System Builder 
+    return 'high';                          // 56-80: Visionary Leader
   };
 
   const resetQuiz = () => {
@@ -240,7 +241,7 @@ export default function Quiz() {
       <>
         <Navbar />
         <div className="min-h-screen relative overflow-hidden flex items-center">
-          <AutoPlayVideo src="https://res.cloudinary.com/dzlnqcmqn/video/upload/v1769038041/19_kuuyat.mp4" className="absolute inset-0 w-full h-full object-cover" />
+          <AutoPlayVideo src="/videos/3.mp4" className="absolute inset-0 w-full h-full object-cover" />
           <div className="relative z-20 max-w-4xl mx-auto px-6 py-12 text-center text-black">
             <div className="bg-white/90 backdrop-blur-md rounded-2xl p-8 border border-white/40 shadow-2xl">
               <h1 className="text-4xl font-bold mb-6">ADHD Entrepreneur Assessment</h1>
@@ -274,7 +275,7 @@ export default function Quiz() {
       <>
         <Navbar />
         <div className="min-h-screen relative overflow-hidden flex items-center">
-          <AutoPlayVideo src="https://res.cloudinary.com/dzlnqcmqn/video/upload/v1769038041/19_kuuyat.mp4" className="absolute inset-0 w-full h-full object-cover" />
+          <AutoPlayVideo src="/videos/3.mp4" className="absolute inset-0 w-full h-full object-cover" />
           <div className="relative z-20 max-w-4xl mx-auto px-6 py-12 text-center text-black">
               <div className="bg-white/90 backdrop-blur-md rounded-2xl p-8 text-black border border-white/40 shadow-2xl">
                 <div className="text-center mb-8">
@@ -314,7 +315,7 @@ export default function Quiz() {
       <>
         <Navbar />
         <div className="min-h-screen relative overflow-hidden flex items-center">
-          <AutoPlayVideo src="https://res.cloudinary.com/dzlnqcmqn/video/upload/v1769038041/19_kuuyat.mp4" className="absolute inset-0 w-full h-full object-cover" />
+          <AutoPlayVideo src="/videos/3.mp4" className="absolute inset-0 w-full h-full object-cover" />
           <div className="relative z-20 max-w-4xl mx-auto px-6 py-12 text-center text-black">
               <div className="bg-white/90 backdrop-blur-md rounded-2xl p-8 text-black border border-white/40 shadow-2xl">
                 <div className="text-center mb-8">
@@ -402,7 +403,7 @@ export default function Quiz() {
       <>
         <Navbar />
         <div className="min-h-screen relative overflow-hidden flex items-center">
-          <AutoPlayVideo src="https://res.cloudinary.com/dzlnqcmqn/video/upload/v1769038041/19_kuuyat.mp4" className="absolute inset-0 w-full h-full object-cover" />
+          <AutoPlayVideo src="/videos/3.mp4" className="absolute inset-0 w-full h-full object-cover" />
           <div className="relative z-20 max-w-4xl mx-auto px-6 py-12 text-center text-black">
             <div className="bg-white/90 backdrop-blur-md rounded-2xl p-8 border border-white/40 shadow-2xl">
               <div className="mb-8">
@@ -467,7 +468,7 @@ export default function Quiz() {
       <>
         <Navbar />
         <div className="min-h-screen relative overflow-hidden flex items-center">
-          <AutoPlayVideo src="https://res.cloudinary.com/dzlnqcmqn/video/upload/v1769038041/19_kuuyat.mp4" className="absolute inset-0 w-full h-full object-cover" />
+          <AutoPlayVideo src="/videos/3.mp4" className="absolute inset-0 w-full h-full object-cover" />
           <div className="relative z-20 max-w-5xl mx-auto px-6 py-12 text-center">
             <div className="bg-white/95 backdrop-blur-md rounded-2xl p-8 border border-white/40 shadow-2xl text-gray-900">
               
@@ -475,10 +476,10 @@ export default function Quiz() {
               <div className="text-center mb-8">
                 <h1 className="text-4xl font-bold mb-4">🤖 Your ADHD Strike Zone Results</h1>
                 <div className="text-2xl font-bold text-gray-700 mb-2">
-                  You're a {profile.archetype} with {profile.challenge}
+                  You're {profile.archetype} with {profile.challenge}
                 </div>
                 <div className="text-lg text-gray-600">
-                  Based on {answers.length} questions • Score: {totalScore}/360
+                  Based on {answers.length} questions • Score: {totalScore}/80
                 </div>
               </div>
 
@@ -554,6 +555,14 @@ export default function Quiz() {
                   >
                     Retake Assessment
                   </button>
+                  {(selectedGrowthStage === 'established' || selectedGrowthStage === 'scaling' || tier === 'high' || tier === 'mid') ? (
+                    <a
+                      href="https://calendly.com/focus-founders/strategy-call"
+                      className="bg-green-600 hover:bg-green-500 text-white px-8 py-3 rounded-full font-semibold transition-colors inline-block"
+                    >
+                      Book Strategy Call
+                    </a>
+                  ) : null}
                   <a
                     href="https://www.skool.com/focus-founders-free/about"
                     className="bg-blue-600 hover:bg-blue-500 text-white px-8 py-3 rounded-full font-semibold transition-colors inline-block"

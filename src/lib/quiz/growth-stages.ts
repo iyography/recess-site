@@ -16,10 +16,17 @@ export const growthStages: GrowthStageConfig[] = [
     revenue: '$1K - $5K/month'
   },
   {
+    id: 'established',
+    name: 'Established',
+    emoji: '⭐',
+    description: 'You have consistent revenue and systems but want to optimize and scale efficiently.',
+    revenue: '$5K - $10K/month'
+  },
+  {
     id: 'scaling',
     name: 'Scaling',
-    emoji: '⭐',
-    description: 'You\'re established and ready to optimize, delegate, and scale to the next level.',
-    revenue: '$5K+/month'
+    emoji: '🚀',
+    description: 'You\'re ready to scale to the next level with advanced systems and delegation.',
+    revenue: '$10K+/month'
   }
 ];
