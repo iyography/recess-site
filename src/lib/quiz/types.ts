@@ -1,6 +1,6 @@
 export type BusinessType = 'service' | 'ecommerce' | 'saas' | 'consulting';
 
-export type GrowthStage = 'startup' | 'growing' | 'scaling';
+export type GrowthStage = 'startup' | 'growing' | 'established' | 'scaling';
 
 export interface QuizQuestion {
   id: string;
