@@ -138,7 +138,7 @@ function Design1() {
       {/* What Is Focus Founders - Video & Text */}
       <section id="why" className="grid lg:grid-cols-2">
         <div className="aspect-square lg:aspect-auto lg:h-screen relative">
-          <AutoPlayVideo src={videos.about} className="absolute inset-0 w-full h-full object-cover" />
+          <AutoPlayVideo src={videos.whatIsnt} className="absolute inset-0 w-full h-full object-cover" />
         </div>
         <div className="flex items-center justify-center p-12 lg:p-24 bg-orange-900/50">
           <div className="max-w-lg">
