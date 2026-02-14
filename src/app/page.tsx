@@ -196,15 +196,6 @@ function Design1() {
         </div>
       </section>
 
-      {/* Feature Video */}
-      <section className="py-12 px-6 lg:px-16">
-        <div className="max-w-6xl mx-auto">
-          <div className="aspect-[21/9] rounded-2xl overflow-hidden">
-            <AutoPlayVideo src={videos.feature} className="w-full h-full object-cover" />
-          </div>
-        </div>
-      </section>
-
       {/* Find Your Tribe */}
       <section className="h-[70vh] relative">
         <AutoPlayVideo src={videos.findPeople} className="absolute inset-0 w-full h-full object-cover" />
