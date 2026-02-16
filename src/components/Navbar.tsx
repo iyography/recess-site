@@ -16,7 +16,7 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white/95 backdrop-blur-md shadow-sm ${
-        isScrolled ? "py-4" : "py-6"
+        isScrolled ? "py-2" : "py-3"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
