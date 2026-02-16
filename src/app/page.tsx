@@ -103,7 +103,7 @@ function Design1() {
   };
 
   return (
-    <div className="bg-gradient-to-br from-purple-900 via-orange-900 to-orange-800 text-white relative">
+    <div className="bg-black text-white relative">
       {/* Hero */}
       <section className="min-h-screen relative overflow-hidden flex items-center">
         <AutoPlayVideo src={videos.hero} className="absolute inset-0 w-full h-full object-cover opacity-40" />
@@ -239,7 +239,7 @@ function Design1() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-20 px-8 text-center bg-gradient-to-br from-purple-900 via-orange-900 to-orange-800">
+      <section className="py-20 px-8 text-center bg-black">
         <span className="font-sans text-sm tracking-[0.5em] uppercase text-yellow-400 block mb-6">Ready?</span>
         <h2 className="font-sans text-5xl lg:text-6xl mb-6 text-white font-bold">
           Join your neurospicy tribe.
