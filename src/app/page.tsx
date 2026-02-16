@@ -199,7 +199,7 @@ function Design1() {
       {/* Find Your Tribe */}
       <section className="h-[70vh] relative">
         <AutoPlayVideo src={videos.findPeople} className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 flex items-center justify-center bg-orange-900/60">
+        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-black" style={{backgroundImage: 'radial-gradient(circle at 20% 20%, rgba(120, 119, 198, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(255, 119, 198, 0.3) 0%, transparent 50%), radial-gradient(circle at 40% 40%, rgba(120, 219, 226, 0.3) 0%, transparent 50%)'}}>
           <div className="text-center">
             <p className="font-bold text-5xl md:text-7xl text-white text-center px-8 mb-4">
               Find your neurospicy tribe.
