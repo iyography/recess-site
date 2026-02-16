@@ -34,16 +34,16 @@ export const metadata: Metadata = {
   title: "Focus Founders | Neurodivergent Entrepreneurs Community",
   description: "Stop fighting your ADHD. Focus Founders is where neurodivergent entrepreneurs build businesses that work with their brains, not against them. Free forever.",
   icons: {
-    icon: "/favicon.png",
-    shortcut: "/favicon.png",
-    apple: "/favicon.png",
+    icon: "/logo.png",
+    shortcut: "/logo.png",
+    apple: "/logo.png",
   },
   openGraph: {
     title: "Focus Founders | Neurodivergent Entrepreneurs Community",
     description: "Stop fighting your ADHD. Focus Founders is where neurodivergent entrepreneurs build businesses that work with their brains, not against them. Free forever.",
     images: [
       {
-        url: "/og-image.png",
+        url: "/logo.png",
         width: 1200,
         height: 630,
         alt: "Focus Founders - Neurodivergent Entrepreneurs Community",
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Focus Founders | Neurodivergent Entrepreneurs Community",
     description: "Stop fighting your ADHD. Focus Founders is where neurodivergent entrepreneurs build businesses that work with their brains, not against them. Free forever.",
-    images: ["/og-image.png"],
+    images: ["/logo.png"],
   },
 };
 

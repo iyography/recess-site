@@ -24,9 +24,13 @@ export default function Navbar() {
           {/* Logo */}
           <a
             href="/"
-            className="font-bold text-2xl md:text-3xl text-white hover:opacity-80 transition-all duration-300"
+            className="hover:opacity-80 transition-all duration-300"
           >
-            Focus Founders
+            <img 
+              src="/logo.png" 
+              alt="Focus Founders" 
+              className="h-8 md:h-10 w-auto"
+            />
           </a>
 
           {/* Nav Links */}
