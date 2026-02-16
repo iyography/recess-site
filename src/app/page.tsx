@@ -160,32 +160,32 @@ function Design1() {
       </section>
 
       {/* What Happens Here */}
-      <section id="features" className="py-24 px-8 bg-orange-900">
+      <section id="features" className="py-24 px-8 bg-gradient-to-br from-black via-gray-900 to-black relative" style={{backgroundImage: 'radial-gradient(circle at 20% 20%, rgba(120, 119, 198, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(255, 119, 198, 0.3) 0%, transparent 50%), radial-gradient(circle at 40% 40%, rgba(120, 219, 226, 0.3) 0%, transparent 50%)'}}>
         <div className="max-w-6xl mx-auto">
           <span className="font-sans text-sm tracking-[0.3em] uppercase text-yellow-400 block mb-4 text-center">What Happens Here</span>
           <div className="grid md:grid-cols-2 gap-8 mt-16">
-            <div className="p-10 border border-orange-500/20 rounded-2xl bg-orange-900/20">
+            <div className="p-10 border border-white/10 rounded-2xl bg-white/5 backdrop-blur-sm">
               <span className="text-4xl mb-4 block">🧠</span>
               <h3 className="font-sans text-3xl mb-4 text-white font-bold">Daily Co-Working Calls</h3>
               <p className="font-sans text-lg text-white/80 leading-relaxed">
                 Body-doubling sessions every day. Join hundreds of ADHD entrepreneurs getting stuff done together. Your ultimate accountability system.
               </p>
             </div>
-            <div className="p-10 border border-orange-500/20 rounded-2xl bg-orange-900/20">
+            <div className="p-10 border border-white/10 rounded-2xl bg-white/5 backdrop-blur-sm">
               <span className="text-4xl mb-4 block">🚀</span>
               <h3 className="font-sans text-3xl mb-4 text-white font-bold">Monthly Business Challenges</h3>
               <p className="font-sans text-lg text-white/80 leading-relaxed">
                 Grow your business with friends. Monthly challenges designed specifically for neurodivergent minds. Real progress, real results.
               </p>
             </div>
-            <div className="p-10 border border-orange-500/20 rounded-2xl bg-orange-900/20">
+            <div className="p-10 border border-white/10 rounded-2xl bg-white/5 backdrop-blur-sm">
               <span className="text-4xl mb-4 block">🎉</span>
               <h3 className="font-sans text-3xl mb-4 text-white font-bold">Friday Wins Celebration</h3>
               <p className="font-sans text-lg text-white/80 leading-relaxed">
                 Every Friday, we celebrate neurodivergent victories. First client. First $1K month. Every hyperfocus session. We get it here.
               </p>
             </div>
-            <div className="p-10 border border-orange-500/20 rounded-2xl bg-orange-900/20">
+            <div className="p-10 border border-white/10 rounded-2xl bg-white/5 backdrop-blur-sm">
               <span className="text-4xl mb-4 block">💜</span>
               <h3 className="font-sans text-3xl mb-4 text-white font-bold">ADHD-Friendly Strategies</h3>
               <p className="font-sans text-lg text-white/80 leading-relaxed">
