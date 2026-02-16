@@ -15,7 +15,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-black/80 backdrop-blur-md ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white/95 backdrop-blur-md shadow-sm ${
         isScrolled ? "py-4" : "py-6"
       }`}
     >
@@ -29,7 +29,7 @@ export default function Navbar() {
             <img 
               src="/logo.png" 
               alt="Focus Founders" 
-              className="h-8 md:h-10 w-auto"
+              className="h-12 md:h-15 w-auto"
             />
           </a>
 
@@ -37,25 +37,25 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-8">
             <a
               href="/#why"
-              className="font-sans text-sm text-white/70 hover:text-white transition-colors"
+              className="font-sans text-sm text-gray-600 hover:text-black transition-colors"
             >
               About
             </a>
             <a
               href="/#features"
-              className="font-sans text-sm text-white/70 hover:text-white transition-colors"
+              className="font-sans text-sm text-gray-600 hover:text-black transition-colors"
             >
               Features
             </a>
             <a
               href="/#for-you"
-              className="font-sans text-sm text-white/70 hover:text-white transition-colors"
+              className="font-sans text-sm text-gray-600 hover:text-black transition-colors"
             >
               For You
             </a>
             <a
               href="/quiz"
-              className="font-sans text-sm text-white/70 hover:text-white transition-colors"
+              className="font-sans text-sm text-gray-600 hover:text-black transition-colors"
             >
               Quiz
             </a>
