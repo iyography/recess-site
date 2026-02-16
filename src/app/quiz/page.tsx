@@ -241,9 +241,9 @@ export default function Quiz() {
       <>
         <Navbar />
         <div className="min-h-screen relative overflow-hidden flex items-center">
-          <AutoPlayVideo src="/videos/3.mp4" className="absolute inset-0 w-full h-full object-cover" />
-          <div className="relative z-20 max-w-4xl mx-auto px-6 py-12 text-center text-black">
-            <div className="bg-white/90 backdrop-blur-md rounded-2xl p-8 border border-white/40 shadow-2xl">
+          <AutoPlayVideo src="https://res.cloudinary.com/dzlnqcmqn/video/upload/v1770000552/15_uefhjt.mp4" className="absolute inset-0 w-full h-full object-cover" />
+          <div className="relative z-20 max-w-4xl mx-auto px-6 py-12 text-center text-white">
+            <div className="bg-white/20 backdrop-blur-md rounded-2xl p-8 border border-white/30 shadow-2xl">
               <h1 className="text-4xl font-bold mb-6">ADHD Entrepreneur Assessment</h1>
               <p className="text-xl mb-8">
                 Discover the perfect business support level for your unique ADHD journey
@@ -275,8 +275,8 @@ export default function Quiz() {
       <>
         <Navbar />
         <div className="min-h-screen relative overflow-hidden flex items-center">
-          <AutoPlayVideo src="/videos/3.mp4" className="absolute inset-0 w-full h-full object-cover" />
-          <div className="relative z-20 max-w-4xl mx-auto px-6 py-12 text-center text-black">
+          <AutoPlayVideo src="https://res.cloudinary.com/dzlnqcmqn/video/upload/v1770000552/15_uefhjt.mp4" className="absolute inset-0 w-full h-full object-cover" />
+          <div className="relative z-20 max-w-4xl mx-auto px-6 py-12 text-center text-white">
               <div className="bg-white/90 backdrop-blur-md rounded-2xl p-8 text-black border border-white/40 shadow-2xl">
                 <div className="text-center mb-8">
                   <h1 className="text-3xl font-bold mb-4">What type of business do you run?</h1>
@@ -293,7 +293,7 @@ export default function Quiz() {
                       className="text-left p-6 bg-white/80 hover:bg-white/90 rounded-xl transition-all duration-300 border border-gray-200 hover:border-blue-400"
                     >
                       <div className="text-4xl mb-4">{businessType.emoji}</div>
-                      <h3 className="text-xl font-semibold mb-2 text-gray-900">{businessType.name}</h3>
+                      <h3 className="text-xl font-semibold mb-2 text-white">{businessType.name}</h3>
                       <p className="text-gray-700 mb-4">{businessType.description}</p>
                       <div className="text-sm text-blue-600 font-medium">
                         Examples: {businessType.examples.join(', ')}
@@ -315,8 +315,8 @@ export default function Quiz() {
       <>
         <Navbar />
         <div className="min-h-screen relative overflow-hidden flex items-center">
-          <AutoPlayVideo src="/videos/3.mp4" className="absolute inset-0 w-full h-full object-cover" />
-          <div className="relative z-20 max-w-4xl mx-auto px-6 py-12 text-center text-black">
+          <AutoPlayVideo src="https://res.cloudinary.com/dzlnqcmqn/video/upload/v1770000552/15_uefhjt.mp4" className="absolute inset-0 w-full h-full object-cover" />
+          <div className="relative z-20 max-w-4xl mx-auto px-6 py-12 text-center text-white">
               <div className="bg-white/90 backdrop-blur-md rounded-2xl p-8 text-black border border-white/40 shadow-2xl">
                 <div className="text-center mb-8">
                   <div className="flex items-center justify-center mb-4">
@@ -340,7 +340,7 @@ export default function Quiz() {
                         <div className="text-3xl mr-4">{stage.emoji}</div>
                         <div className="flex-1">
                           <div className="flex items-center justify-between mb-2">
-                            <h3 className="text-xl font-semibold text-gray-900">{stage.name}</h3>
+                            <h3 className="text-xl font-semibold text-white">{stage.name}</h3>
                             <span className="text-blue-600 font-medium">{stage.revenue}</span>
                           </div>
                           <p className="text-gray-700">{stage.description}</p>
@@ -403,12 +403,12 @@ export default function Quiz() {
       <>
         <Navbar />
         <div className="min-h-screen relative overflow-hidden flex items-center">
-          <AutoPlayVideo src="/videos/3.mp4" className="absolute inset-0 w-full h-full object-cover" />
-          <div className="relative z-20 max-w-4xl mx-auto px-6 py-12 text-center text-black">
-            <div className="bg-white/90 backdrop-blur-md rounded-2xl p-8 border border-white/40 shadow-2xl">
+          <AutoPlayVideo src="https://res.cloudinary.com/dzlnqcmqn/video/upload/v1770000552/15_uefhjt.mp4" className="absolute inset-0 w-full h-full object-cover" />
+          <div className="relative z-20 max-w-4xl mx-auto px-6 py-12 text-center text-white">
+            <div className="bg-white/20 backdrop-blur-md rounded-2xl p-8 border border-white/30 shadow-2xl">
               <div className="mb-8">
                 <div className="flex justify-between items-center mb-4">
-                  <h1 className="text-3xl font-bold text-gray-900">ADHD Entrepreneur Assessment</h1>
+                  <h1 className="text-3xl font-bold text-white">ADHD Entrepreneur Assessment</h1>
                   <span className="text-blue-600 font-semibold">
                     {currentQuestionIndex + 1} of {questions.length}
                   </span>
@@ -430,7 +430,7 @@ export default function Quiz() {
               </div>
               
               <div className="mb-8">
-                <h2 className="text-2xl font-semibold mb-8 text-gray-900">
+                <h2 className="text-2xl font-semibold mb-8 text-white">
                   {currentQuestion.question}
                 </h2>
                 
@@ -441,7 +441,7 @@ export default function Quiz() {
                       onClick={() => handleAnswer(option.points)}
                       className="w-full text-left p-6 bg-white/80 hover:bg-white/90 rounded-xl transition-all duration-300 border border-gray-200 hover:border-blue-400"
                     >
-                      <span className="text-lg text-gray-900">{option.text}</span>
+                      <span className="text-lg text-white">{option.text}</span>
                     </button>
                   ))}
                 </div>
@@ -468,9 +468,9 @@ export default function Quiz() {
       <>
         <Navbar />
         <div className="min-h-screen relative overflow-hidden flex items-center">
-          <AutoPlayVideo src="/videos/3.mp4" className="absolute inset-0 w-full h-full object-cover" />
+          <AutoPlayVideo src="https://res.cloudinary.com/dzlnqcmqn/video/upload/v1770000552/15_uefhjt.mp4" className="absolute inset-0 w-full h-full object-cover" />
           <div className="relative z-20 max-w-5xl mx-auto px-6 py-12 text-center">
-            <div className="bg-white/95 backdrop-blur-md rounded-2xl p-8 border border-white/40 shadow-2xl text-gray-900">
+            <div className="bg-white/20 backdrop-blur-md rounded-2xl p-8 border border-white/40 shadow-2xl text-white">
               
               {/* Header */}
               <div className="text-center mb-8">
