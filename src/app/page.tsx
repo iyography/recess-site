@@ -140,7 +140,7 @@ function Design1() {
         <div className="aspect-square lg:aspect-auto lg:h-screen relative">
           <AutoPlayVideo src={videos.whatIsnt} className="absolute inset-0 w-full h-full object-cover" />
         </div>
-        <div className="flex items-center justify-center p-12 lg:p-24 bg-orange-900/50">
+        <div className="flex items-center justify-center p-12 lg:p-24 bg-gradient-to-br from-black via-gray-900 to-black relative" style={{backgroundImage: 'radial-gradient(circle at 20% 20%, rgba(120, 119, 198, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(255, 119, 198, 0.3) 0%, transparent 50%), radial-gradient(circle at 40% 40%, rgba(120, 219, 226, 0.3) 0%, transparent 50%)'}}>
           <div className="max-w-lg">
             <span className="font-sans text-sm tracking-[0.3em] uppercase text-yellow-400 block mb-6">What Is Focus Founders?</span>
             <h2 className="font-sans text-4xl lg:text-5xl leading-relaxed mb-8 text-white font-bold">
