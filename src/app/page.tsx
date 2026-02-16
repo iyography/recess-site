@@ -160,7 +160,7 @@ function Design1() {
       </section>
 
       {/* What Happens Here */}
-      <section id="features" className="py-24 px-8 bg-gradient-to-br from-black via-gray-900 to-black relative" style={{backgroundImage: 'radial-gradient(circle at 20% 20%, rgba(120, 119, 198, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(255, 119, 198, 0.3) 0%, transparent 50%), radial-gradient(circle at 40% 40%, rgba(120, 219, 226, 0.3) 0%, transparent 50%)'}}>
+      <section id="features" className="py-24 px-8 bg-black relative" style={{backgroundImage: 'radial-gradient(circle at 30% 30%, rgba(120, 119, 198, 0.1) 0%, transparent 70%), radial-gradient(circle at 70% 70%, rgba(255, 119, 198, 0.08) 0%, transparent 70%)'}}>
         <div className="max-w-6xl mx-auto">
           <span className="font-sans text-sm tracking-[0.3em] uppercase text-yellow-400 block mb-4 text-center">What Happens Here</span>
           <div className="grid md:grid-cols-2 gap-8 mt-16">
