@@ -197,22 +197,19 @@ function Design1() {
       </section>
 
       {/* Find Your Tribe */}
-      <section className="h-[70vh] relative">
-        <AutoPlayVideo src={videos.findPeople} className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-black" style={{backgroundImage: 'radial-gradient(circle at 20% 20%, rgba(120, 119, 198, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(255, 119, 198, 0.3) 0%, transparent 50%), radial-gradient(circle at 40% 40%, rgba(120, 219, 226, 0.3) 0%, transparent 50%)'}}>
-          <div className="text-center">
-            <p className="font-bold text-5xl md:text-7xl text-white text-center px-8 mb-4">
-              Find your neurospicy tribe.
-            </p>
-            <p className="text-xl md:text-2xl text-yellow-400 font-semibold">
-              Finally, people who actually get it. 🧠
-            </p>
-          </div>
+      <section className="h-[70vh] relative flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-black" style={{backgroundImage: 'radial-gradient(circle at 20% 20%, rgba(120, 119, 198, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(255, 119, 198, 0.3) 0%, transparent 50%), radial-gradient(circle at 40% 40%, rgba(120, 219, 226, 0.3) 0%, transparent 50%)'}}>
+        <div className="text-center">
+          <p className="font-bold text-5xl md:text-7xl text-white text-center px-8 mb-4">
+            Find your neurospicy tribe.
+          </p>
+          <p className="text-xl md:text-2xl text-yellow-400 font-semibold">
+            Finally, people who actually get it. 🧠
+          </p>
         </div>
       </section>
 
       {/* This Is For You */}
-      <section id="for-you" className="py-24 px-8 bg-gradient-to-r from-purple-900 to-orange-900">
+      <section id="for-you" className="py-24 px-8 bg-black relative" style={{backgroundImage: 'radial-gradient(circle at 30% 30%, rgba(120, 119, 198, 0.1) 0%, transparent 70%), radial-gradient(circle at 70% 70%, rgba(255, 119, 198, 0.08) 0%, transparent 70%)'}}>
         <div className="max-w-4xl mx-auto text-center">
           <span className="font-sans text-sm tracking-[0.3em] uppercase text-yellow-400 block mb-6">This Is For You</span>
           <p className="font-sans text-3xl lg:text-4xl leading-relaxed mb-8 text-white font-medium">
