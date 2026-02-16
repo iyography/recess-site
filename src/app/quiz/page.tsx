@@ -293,7 +293,7 @@ export default function Quiz() {
                       className="text-left p-6 bg-white/80 hover:bg-white/90 rounded-xl transition-all duration-300 border border-gray-200 hover:border-blue-400"
                     >
                       <div className="text-4xl mb-4">{businessType.emoji}</div>
-                      <h3 className="text-xl font-semibold mb-2 text-white">{businessType.name}</h3>
+                      <h3 className="text-xl font-semibold mb-2 text-black">{businessType.name}</h3>
                       <p className="text-gray-700 mb-4">{businessType.description}</p>
                       <div className="text-sm text-blue-600 font-medium">
                         Examples: {businessType.examples.join(', ')}
@@ -340,7 +340,7 @@ export default function Quiz() {
                         <div className="text-3xl mr-4">{stage.emoji}</div>
                         <div className="flex-1">
                           <div className="flex items-center justify-between mb-2">
-                            <h3 className="text-xl font-semibold text-white">{stage.name}</h3>
+                            <h3 className="text-xl font-semibold text-black">{stage.name}</h3>
                             <span className="text-blue-600 font-medium">{stage.revenue}</span>
                           </div>
                           <p className="text-gray-700">{stage.description}</p>
@@ -441,7 +441,7 @@ export default function Quiz() {
                       onClick={() => handleAnswer(option.points)}
                       className="w-full text-left p-6 bg-white/80 hover:bg-white/90 rounded-xl transition-all duration-300 border border-gray-200 hover:border-blue-400"
                     >
-                      <span className="text-lg text-white">{option.text}</span>
+                      <span className="text-lg text-black">{option.text}</span>
                     </button>
                   ))}
                 </div>
