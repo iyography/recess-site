@@ -248,7 +248,7 @@ function Design1() {
           <img 
             src="/whitelogo.png" 
             alt="Focus Founders" 
-            className="h-8 w-auto"
+            className="h-12 w-auto"
           />
           <span className="font-sans text-xs text-white/50">&copy; 2026 Focus Founders. All rights reserved.</span>
         </div>
