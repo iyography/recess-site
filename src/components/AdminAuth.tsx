@@ -9,13 +9,15 @@ interface AdminAuthProps {
 }
 
 const APPROVED_EMAILS = [
-  'rex@focusfounders.com',
-  'admin@focusfounders.com',
+  'davidiya3@gmail.com',
+  'inbillsmind@gmail.com',
+  'rexloyer@gmail.com',
 ];
 
 const DEFAULT_PASSWORDS: { [key: string]: string } = {
-  'rex@focusfounders.com': 'FocusFounders2024!',
-  'admin@focusfounders.com': 'AdminAccess2024!',
+  'davidiya3@gmail.com': 'FocusFounders2024!',
+  'inbillsmind@gmail.com': 'AdminAccess2024!',
+  'rexloyer@gmail.com': 'RexAccess2024!',
 };
 
 export default function AdminAuth({ onAuthenticate }: AdminAuthProps) {
