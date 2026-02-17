@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 
-export default function Navbar() {
+export default function Navbar({ hideNavLinks = false }: { hideNavLinks?: boolean }) {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -34,32 +34,34 @@ export default function Navbar() {
           </a>
 
           {/* Nav Links */}
-          <div className="hidden md:flex items-center gap-8">
-            <a
-              href="/#why"
-              className="font-sans text-sm text-gray-600 hover:text-black transition-colors"
-            >
-              About
-            </a>
-            <a
-              href="/#features"
-              className="font-sans text-sm text-gray-600 hover:text-black transition-colors"
-            >
-              Features
-            </a>
-            <a
-              href="/#for-you"
-              className="font-sans text-sm text-gray-600 hover:text-black transition-colors"
-            >
-              For You
-            </a>
-            <a
-              href="/quiz"
-              className="font-sans text-sm text-gray-600 hover:text-black transition-colors"
-            >
-              Quiz
-            </a>
-          </div>
+          {!hideNavLinks && (
+            <div className="hidden md:flex items-center gap-8">
+              <a
+                href="/#why"
+                className="font-sans text-sm text-gray-600 hover:text-black transition-colors"
+              >
+                About
+              </a>
+              <a
+                href="/#features"
+                className="font-sans text-sm text-gray-600 hover:text-black transition-colors"
+              >
+                Features
+              </a>
+              <a
+                href="/#for-you"
+                className="font-sans text-sm text-gray-600 hover:text-black transition-colors"
+              >
+                For You
+              </a>
+              <a
+                href="/quiz"
+                className="font-sans text-sm text-gray-600 hover:text-black transition-colors"
+              >
+                Quiz
+              </a>
+            </div>
+          )}
 
           {/* CTA Buttons */}
           <div className="flex items-center gap-3">

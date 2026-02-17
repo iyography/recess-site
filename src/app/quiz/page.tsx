@@ -7,6 +7,7 @@ import { businessTypes } from "../../lib/quiz/business-types";
 import { growthStages } from "../../lib/quiz/growth-stages";
 import { BusinessType, GrowthStage } from "../../lib/quiz/types";
 import { getQuestionsForPath } from "../../lib/quiz/questions";
+import { submitQuizResult } from "../../lib/supabase";
 
 interface ResultProfile {
   archetype: string;
@@ -185,12 +186,21 @@ function AutoPlayVideo({ src, className }: { src: string; className: string }) {
 
 export default function Quiz() {
   const router = useRouter();
-  const [step, setStep] = useState<'intro' | 'business-type' | 'growth-stage' | 'questions' | 'results'>('intro');
+  const [step, setStep] = useState<'intro' | 'business-type' | 'growth-stage' | 'questions' | 'contact' | 'results'>('intro');
   const [selectedBusinessType, setSelectedBusinessType] = useState<BusinessType | null>(null);
   const [selectedGrowthStage, setSelectedGrowthStage] = useState<GrowthStage | null>(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<number[]>([]);
+  const [detailedAnswers, setDetailedAnswers] = useState<Array<{ questionId: string; questionText: string; selectedAnswer: string; points: number }>>([]);
   const [totalScore, setTotalScore] = useState(0);
+  
+  // Contact form state
+  const [contactInfo, setContactInfo] = useState({
+    full_name: '',
+    email: '',
+    phone: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const startQuiz = () => {
     setStep('business-type');
@@ -214,9 +224,66 @@ export default function Quiz() {
     setStep('intro');
     setCurrentQuestionIndex(0);
     setAnswers([]);
+    setDetailedAnswers([]);
     setTotalScore(0);
     setSelectedBusinessType(null);
     setSelectedGrowthStage(null);
+  };
+
+  const submitContactForm = async () => {
+    if (!contactInfo.full_name || !contactInfo.email || !contactInfo.phone) {
+      alert('Please fill in all fields');
+      return;
+    }
+
+    setIsSubmitting(true);
+    
+    try {
+      const tier = calculateTier();
+      const profile = resultProfiles[tier];
+      
+      // Get business type and growth stage names
+      const businessType = businessTypes.find(bt => bt.id === selectedBusinessType);
+      const growthStage = growthStages.find(gs => gs.id === selectedGrowthStage);
+      
+      const submission = {
+        full_name: contactInfo.full_name,
+        email: contactInfo.email,
+        phone: contactInfo.phone,
+        track: businessType?.name || selectedBusinessType || '',
+        archetype: tier,
+        archetype_name: profile.archetype,
+        bottleneck: profile.challengeDescription,
+        recommended_tier: `${profile.archetype} (${tier})`,
+        strike_zone: `${profile.archetypeDescription} - ${profile.challenge}`,
+        focus: profile.focusOn.items,
+        ignore_list: profile.ignore.items.join(', '),
+        sixty_day_path: profile.pathForward.join(' | '),
+        answers: {
+          businessType: selectedBusinessType,
+          growthStage: selectedGrowthStage,
+          questionAnswers: answers,
+          detailedAnswers: detailedAnswers,
+          totalScore: totalScore,
+          questions: getQuestionsForPath(selectedBusinessType!, selectedGrowthStage!)
+        },
+        user_agent: navigator.userAgent
+      };
+      
+      try {
+        await submitQuizResult(submission);
+        console.log('Quiz submitted successfully to database');
+      } catch (dbError) {
+        console.warn('Database not configured, quiz will work without saving:', dbError);
+        // Continue to results even if database submission fails
+      }
+      setStep('results');
+    } catch (error) {
+      console.error('Error processing quiz:', error);
+      alert('There was an error processing your quiz. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const selectGrowthStage = (growthStage: GrowthStage) => {
@@ -233,14 +300,15 @@ export default function Quiz() {
     // Start the questions on this page
     setCurrentQuestionIndex(0);
     setAnswers([]);
+    setDetailedAnswers([]);
     setStep('questions');
   };
 
   if (step === 'intro') {
     return (
       <>
-        <Navbar />
-        <div className="min-h-screen relative overflow-hidden flex items-center">
+        <Navbar hideNavLinks={true} />
+        <div className="min-h-screen relative overflow-hidden pt-24">
           <AutoPlayVideo src="https://res.cloudinary.com/dzlnqcmqn/video/upload/v1770000552/15_uefhjt.mp4" className="absolute inset-0 w-full h-full object-cover" />
           <div className="relative z-20 max-w-4xl mx-auto px-6 py-12 text-center text-white">
             <div className="bg-white/20 backdrop-blur-md rounded-2xl p-8 border border-white/30 shadow-2xl">
@@ -273,8 +341,8 @@ export default function Quiz() {
   if (step === 'business-type') {
     return (
       <>
-        <Navbar />
-        <div className="min-h-screen relative overflow-hidden flex items-center">
+        <Navbar hideNavLinks={true} />
+        <div className="min-h-screen relative overflow-hidden pt-24">
           <AutoPlayVideo src="https://res.cloudinary.com/dzlnqcmqn/video/upload/v1770000552/15_uefhjt.mp4" className="absolute inset-0 w-full h-full object-cover" />
           <div className="relative z-20 max-w-4xl mx-auto px-6 py-12 text-center text-white">
               <div className="bg-white/90 backdrop-blur-md rounded-2xl p-8 text-black border border-white/40 shadow-2xl">
@@ -313,8 +381,8 @@ export default function Quiz() {
     
     return (
       <>
-        <Navbar />
-        <div className="min-h-screen relative overflow-hidden flex items-center">
+        <Navbar hideNavLinks={true} />
+        <div className="min-h-screen relative overflow-hidden pt-24">
           <AutoPlayVideo src="https://res.cloudinary.com/dzlnqcmqn/video/upload/v1770000552/15_uefhjt.mp4" className="absolute inset-0 w-full h-full object-cover" />
           <div className="relative z-20 max-w-4xl mx-auto px-6 py-12 text-center text-white">
               <div className="bg-white/90 backdrop-blur-md rounded-2xl p-8 text-black border border-white/40 shadow-2xl">
@@ -371,10 +439,20 @@ export default function Quiz() {
     const currentQuestion = questions[currentQuestionIndex];
     const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
 
-    const handleAnswer = (points: number) => {
+    const handleAnswer = (points: number, selectedAnswerText: string) => {
       const newAnswers = [...answers];
       newAnswers[currentQuestionIndex] = points;
       setAnswers(newAnswers);
+      
+      // Store detailed answer data
+      const newDetailedAnswers = [...detailedAnswers];
+      newDetailedAnswers[currentQuestionIndex] = {
+        questionId: currentQuestion.id,
+        questionText: currentQuestion.question,
+        selectedAnswer: selectedAnswerText,
+        points: points
+      };
+      setDetailedAnswers(newDetailedAnswers);
       
       // Save to localStorage
       localStorage.setItem('focusFoundersQuizAnswers', JSON.stringify(newAnswers));
@@ -383,11 +461,11 @@ export default function Quiz() {
       if (currentQuestionIndex < questions.length - 1) {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
       } else {
-        // Calculate final results and show on same page
+        // Calculate final results and show contact form
         const calculatedScore = newAnswers.reduce((sum, score) => sum + score, 0);
         setTotalScore(calculatedScore);
         localStorage.setItem('focusFoundersQuizScore', calculatedScore.toString());
-        setStep('results');
+        setStep('contact');
       }
     };
 
@@ -401,15 +479,15 @@ export default function Quiz() {
 
     return (
       <>
-        <Navbar />
-        <div className="min-h-screen relative overflow-hidden flex items-center">
+        <Navbar hideNavLinks={true} />
+        <div className="min-h-screen relative overflow-hidden pt-24">
           <AutoPlayVideo src="https://res.cloudinary.com/dzlnqcmqn/video/upload/v1770000552/15_uefhjt.mp4" className="absolute inset-0 w-full h-full object-cover" />
           <div className="relative z-20 max-w-4xl mx-auto px-6 py-12 text-center text-white">
             <div className="bg-white/20 backdrop-blur-md rounded-2xl p-8 border border-white/30 shadow-2xl">
               <div className="mb-8">
                 <div className="flex justify-between items-center mb-4">
                   <h1 className="text-3xl font-bold text-white">ADHD Entrepreneur Assessment</h1>
-                  <span className="text-blue-600 font-semibold">
+                  <span className="text-white font-semibold">
                     {currentQuestionIndex + 1} of {questions.length}
                   </span>
                 </div>
@@ -423,7 +501,7 @@ export default function Quiz() {
 
                 <button
                   onClick={goBack}
-                  className="mb-4 text-blue-600 hover:text-blue-500 flex items-center font-medium"
+                  className="mb-4 text-white hover:text-white/80 flex items-center font-medium"
                 >
                   ← Previous
                 </button>
@@ -438,7 +516,7 @@ export default function Quiz() {
                   {currentQuestion.options.map((option, index) => (
                     <button
                       key={index}
-                      onClick={() => handleAnswer(option.points)}
+                      onClick={() => handleAnswer(option.points, option.text)}
                       className="w-full text-left p-6 bg-white/80 hover:bg-white/90 rounded-xl transition-all duration-300 border border-gray-200 hover:border-blue-400"
                     >
                       <span className="text-lg text-black">{option.text}</span>
@@ -447,10 +525,119 @@ export default function Quiz() {
                 </div>
               </div>
 
-              <div className="text-center text-gray-600">
+              <div className="text-center text-white/80">
                 <p className="text-sm">
                   This assessment helps us recommend the perfect ADHD-friendly business support for your current stage.
                 </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  // Contact form step
+  if (step === 'contact') {
+    return (
+      <>
+        <Navbar hideNavLinks={true} />
+        <div className="min-h-screen relative overflow-hidden pt-24">
+          <AutoPlayVideo src="https://res.cloudinary.com/dzlnqcmqn/video/upload/v1770000552/15_uefhjt.mp4" className="absolute inset-0 w-full h-full object-cover" />
+          <div className="relative z-20 max-w-4xl mx-auto px-6 py-12 text-center text-white">
+            <div className="bg-white/20 backdrop-blur-md rounded-2xl p-8 border border-white/30 shadow-2xl">
+              
+              {/* Header */}
+              <div className="text-center mb-8">
+                <h1 className="text-4xl font-bold mb-4 text-white">🎉 Almost Done!</h1>
+                <p className="text-xl text-white/80 mb-4">
+                  Enter your contact information to get your personalized ADHD entrepreneur results.
+                </p>
+                <div className="text-lg text-white/70">
+                  Your results will be delivered instantly - no waiting!
+                </div>
+              </div>
+
+              {/* Contact Form */}
+              <div className="bg-white/10 rounded-xl p-6 mb-8">
+                <div className="space-y-6">
+                  <div>
+                    <label className="block text-white font-semibold mb-2 text-left">
+                      Full Name *
+                    </label>
+                    <input
+                      type="text"
+                      value={contactInfo.full_name}
+                      onChange={(e) => setContactInfo({...contactInfo, full_name: e.target.value})}
+                      placeholder="Enter your full name"
+                      className="w-full px-4 py-3 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-white font-semibold mb-2 text-left">
+                      Email Address *
+                    </label>
+                    <input
+                      type="email"
+                      value={contactInfo.email}
+                      onChange={(e) => setContactInfo({...contactInfo, email: e.target.value})}
+                      placeholder="Enter your email address"
+                      className="w-full px-4 py-3 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-white font-semibold mb-2 text-left">
+                      Phone Number *
+                    </label>
+                    <input
+                      type="tel"
+                      value={contactInfo.phone}
+                      onChange={(e) => setContactInfo({...contactInfo, phone: e.target.value})}
+                      placeholder="Enter your phone number"
+                      className="w-full px-4 py-3 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Privacy Note */}
+              <div className="bg-yellow-500/20 rounded-lg p-4 mb-8">
+                <p className="text-sm text-white/80">
+                  🔒 Your information is secure and will only be used to deliver your personalized results and occasional ADHD entrepreneur tips. We never spam or share your data.
+                </p>
+              </div>
+
+              {/* Submit Button */}
+              <div className="space-y-4">
+                <button
+                  onClick={submitContactForm}
+                  disabled={isSubmitting}
+                  className={`w-full py-4 px-8 rounded-full font-bold text-lg transition-all ${
+                    isSubmitting 
+                      ? 'bg-gray-400 cursor-not-allowed' 
+                      : 'bg-yellow-500 hover:bg-yellow-400 text-black'
+                  }`}
+                >
+                  {isSubmitting ? (
+                    <span className="flex items-center justify-center">
+                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-black mr-3"></div>
+                      Generating Your Results...
+                    </span>
+                  ) : (
+                    'Get My ADHD Entrepreneur Results'
+                  )}
+                </button>
+                
+                <button
+                  onClick={() => setStep('questions')}
+                  className="text-white/60 hover:text-white/80 text-sm"
+                  disabled={isSubmitting}
+                >
+                  ← Back to Questions
+                </button>
               </div>
             </div>
           </div>
@@ -466,20 +653,17 @@ export default function Quiz() {
 
     return (
       <>
-        <Navbar />
-        <div className="min-h-screen relative overflow-hidden flex items-center">
+        <Navbar hideNavLinks={true} />
+        <div className="min-h-screen relative overflow-hidden pt-24">
           <AutoPlayVideo src="https://res.cloudinary.com/dzlnqcmqn/video/upload/v1770000552/15_uefhjt.mp4" className="absolute inset-0 w-full h-full object-cover" />
           <div className="relative z-20 max-w-5xl mx-auto px-6 py-12 text-center">
             <div className="bg-white/20 backdrop-blur-md rounded-2xl p-8 border border-white/40 shadow-2xl text-white">
               
               {/* Header */}
               <div className="text-center mb-8">
-                <h1 className="text-4xl font-bold mb-4">🤖 Your ADHD Strike Zone Results</h1>
-                <div className="text-2xl font-bold text-gray-700 mb-2">
+                <h1 className="text-4xl font-bold mb-4 text-white">🤖 Your ADHD Strike Zone Results</h1>
+                <div className="text-2xl font-bold text-white mb-2">
                   You're {profile.archetype} with {profile.challenge}
-                </div>
-                <div className="text-lg text-gray-600">
-                  Based on {answers.length} questions • Score: {totalScore}/80
                 </div>
               </div>
 
@@ -504,7 +688,7 @@ export default function Quiz() {
 
               {/* Path Forward */}
               <div className="bg-blue-50 rounded-xl p-6 mb-8">
-                <h3 className="text-2xl font-bold text-center mb-6">Your Path Forward:</h3>
+                <h3 className="text-2xl font-bold text-center mb-6 text-blue-800">Your Path Forward:</h3>
                 <div className="space-y-4">
                   {profile.pathForward.map((step, index) => (
                     <div key={index} className="flex items-start text-left">
@@ -545,7 +729,7 @@ export default function Quiz() {
 
               {/* Call to Action */}
               <div className="text-center space-y-4">
-                <div className="text-lg text-gray-700 mb-6">
+                <div className="text-lg text-white mb-6">
                   Ready to transform your ADHD entrepreneurial journey?
                 </div>
                 <div className="space-x-4">
@@ -555,19 +739,21 @@ export default function Quiz() {
                   >
                     Retake Assessment
                   </button>
-                  {(selectedGrowthStage === 'established' || selectedGrowthStage === 'scaling' || tier === 'high' || tier === 'mid') ? (
+                  {(selectedGrowthStage !== 'startup') ? (
                     <a
-                      href="https://calendly.com/focus-founders/strategy-call"
-                      className="bg-green-600 hover:bg-green-500 text-white px-8 py-3 rounded-full font-semibold transition-colors inline-block"
+                      href="https://calendly.com/rexloyer/focus-founders-qualification?back=1"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-orange-500 hover:bg-orange-400 text-black px-8 py-3 rounded-full font-semibold transition-colors inline-block"
                     >
                       Book Strategy Call
                     </a>
                   ) : null}
                   <a
                     href="https://www.skool.com/focus-founders-free/about"
-                    className="bg-blue-600 hover:bg-blue-500 text-white px-8 py-3 rounded-full font-semibold transition-colors inline-block"
+                    className="bg-yellow-500 hover:bg-yellow-400 text-black px-8 py-3 rounded-full font-semibold transition-colors inline-block"
                   >
-                    Join Free Community
+                    Join Focus Founders
                   </a>
                 </div>
               </div>
