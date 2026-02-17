@@ -15,9 +15,9 @@ const APPROVED_EMAILS = [
 ];
 
 const DEFAULT_PASSWORDS: { [key: string]: string } = {
-  'davidiya3@gmail.com': 'FocusFounders2024!',
-  'inbillsmind@gmail.com': 'AdminAccess2024!',
-  'rexloyer@gmail.com': 'RexAccess2024!',
+  'davidiya3@gmail.com': 'FocusForever7!',
+  'inbillsmind@gmail.com': 'FocusForever7!',
+  'rexloyer@gmail.com': 'FocusForever7!',
 };
 
 export default function AdminAuth({ onAuthenticate }: AdminAuthProps) {
