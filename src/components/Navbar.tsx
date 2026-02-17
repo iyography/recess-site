@@ -73,7 +73,7 @@ export default function Navbar() {
               href="https://www.skool.com/focus-founders-free/about"
               className="font-sans text-xs tracking-widest uppercase px-6 py-2 bg-yellow-500 text-black hover:bg-yellow-400 transition-all duration-300 rounded-sm"
             >
-              Join Focus Founders FREE
+              Join Focus Founders
             </a>
           </div>
         </div>

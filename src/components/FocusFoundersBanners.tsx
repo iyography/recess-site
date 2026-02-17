@@ -138,7 +138,7 @@ function HiddenBannerTwo() {
 
       <div className="text-center">
         <button className="bg-yellow-400 hover:bg-yellow-300 text-black font-bold py-4 px-12 rounded-full transition-colors text-xl">
-          Join Focus Founders FREE
+          Join Focus Founders
         </button>
         <div className="text-emerald-300 text-sm mt-4">
           ADHD? Autism? AuDHD? OCD? Whatever - you are welcome here! 😊

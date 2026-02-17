@@ -122,7 +122,7 @@ function Design1() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
             <a href="https://www.skool.com/focus-founders-free/about" className="inline-block font-sans font-semibold bg-yellow-500 hover:bg-yellow-400 text-black px-12 py-4 rounded-full transition-colors">
-              Join Focus Founders FREE
+              Join Focus Founders
             </a>
             <a href="/quiz" className="inline-block font-sans font-semibold bg-white/20 hover:bg-white/30 text-white border-2 border-white/30 px-12 py-4 rounded-full transition-colors">
               Take ADHD Business Quiz

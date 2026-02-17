@@ -193,7 +193,7 @@ export default function WinsOrange() {
                 href="https://www.skool.com/focus-founders-free/about"
                 className="inline-block font-sans font-semibold bg-yellow-500 hover:bg-yellow-400 text-black px-12 py-4 rounded-full transition-colors text-lg"
               >
-                Join Focus Founders FREE
+                Join Focus Founders
               </Link>
               <Link 
                 href="/quiz"
