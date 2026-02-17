@@ -202,9 +202,12 @@ function Design1() {
           <p className="font-bold text-5xl md:text-7xl text-white text-center px-8 mb-4">
             Find your neurospicy tribe.
           </p>
-          <p className="text-xl md:text-2xl text-yellow-400 font-semibold">
+          <p className="text-xl md:text-2xl text-yellow-400 font-semibold mb-8">
             Finally, people who actually get it. 🧠
           </p>
+          <a href="https://www.skool.com/focus-founders-free/about" className="inline-block font-sans font-semibold bg-yellow-500 hover:bg-yellow-400 text-black px-12 py-4 rounded-full transition-colors text-xl">
+            Join Focus Founders
+          </a>
         </div>
       </section>
 
@@ -238,22 +241,6 @@ function Design1() {
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="py-20 px-8 text-center bg-black">
-        <span className="font-sans text-sm tracking-[0.5em] uppercase text-yellow-400 block mb-6">Ready?</span>
-        <h2 className="font-sans text-5xl lg:text-6xl mb-6 text-white font-bold">
-          Join your neurospicy tribe.
-        </h2>
-        <p className="font-sans text-xl text-white/80 mb-8 max-w-3xl mx-auto">
-          Stop fighting your ADHD. Start building a business that leverages your neurodivergent superpowers.
-        </p>
-        <a href="https://www.skool.com/focus-founders-free/about" className="inline-block font-sans font-semibold bg-yellow-500 hover:bg-yellow-400 text-black px-14 py-5 rounded-full transition-colors text-xl">
-          Join Focus Founders FREE
-        </a>
-        <p className="text-white/60 text-sm mt-6">
-          🌎 Austin-based • Welcome worldwide • ADHD? Autism? AuDHD? OCD? You belong here! 💜
-        </p>
-      </section>
 
       {/* Footer */}
       <footer className="py-16 px-8 border-t border-white/10 bg-black">
