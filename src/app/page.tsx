@@ -245,7 +245,11 @@ function Design1() {
       {/* Footer */}
       <footer className="py-16 px-8 border-t border-white/10 bg-black">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-          <span className="font-bold text-3xl text-white">Focus Founders</span>
+          <img 
+            src="/whitelogo.png" 
+            alt="Focus Founders" 
+            className="h-8 w-auto"
+          />
           <span className="font-sans text-xs text-white/50">&copy; 2026 Focus Founders. All rights reserved.</span>
         </div>
       </footer>
